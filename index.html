@@ -1,0 +1,332 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ayushi Jain | Flutter Developer</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-1rjN55Tg8C7paS1cX0+v0n70Yk0glpbqmvkBfA8cD6KESEbg4bwopXKTx1J0zRRM5SljoV4Gb1PSHU4P/2FR/Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- AOS & Animate.css -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #7c3aed;       /* purple */
+      --accent-2: #00d4ff;     /* cyan-blue */
+      --accent-light: #a78bfa;
+      --bg: #05010a;
+      --card: #0f0d16;
+      --text: #eef2ff;
+      --muted: #bfc8d6;
+      --maxW: 1200px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.06), transparent 20%),
+                  radial-gradient(circle at 80% 30%, rgba(0,212,255,0.04), transparent 20%), var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+
+    /* Particle-like moving subtle background layers */
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(124,58,237,0.09), transparent 15%),
+        radial-gradient(circle at 90% 25%, rgba(0,212,255,0.06), transparent 16%),
+        linear-gradient(180deg, rgba(255,255,255,0.01), transparent 25%);
+      z-index:-2;
+      animation: bgMove 24s linear infinite alternate;
+      filter: blur(18px);
+    }
+    @keyframes bgMove{
+      0%{transform:translate(0,0)}
+      100%{transform:translate(-60px,40px)}
+    }
+
+    /* Header */
+    header{
+      position:fixed;left:0;right:0;top:0;height:72px;padding:0 6%;
+      display:flex;align-items:center;justify-content:space-between;
+      background:rgba(5,4,12,0.55);backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(124,58,237,0.12);z-index:1000;
+    }
+    .logo{font-weight:800;font-size:1.4rem;color:var(--accent)}
+    nav a{margin-left:24px;color:var(--text);text-decoration:none;font-weight:500;position:relative}
+    nav a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .25s}
+    nav a:hover::after{width:100%}
+    nav a:hover{color:var(--accent-2)}
+
+    /* Main sections */
+    section{padding:120px 6% 80px;max-width:var(--maxW);margin:0 auto;position:relative}
+    .title{text-align:center;font-size:2.5rem;font-weight:700;margin-bottom:56px;color:var(--accent)}
+    .title::after{display:block;content:"";width:88px;height:4px;margin:14px auto 0;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+
+    /* Hero */
+    #hero{min-height:110vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:140px}
+    .hero-img{
+      width:210px;height:210px;border-radius:50%;object-fit:cover;border:6px solid rgba(124,58,237,0.12);
+      box-shadow:0 0 30px rgba(124,58,237,0.12),0 0 80px rgba(0,212,255,0.06);
+      animation: float 6s ease-in-out infinite, fadeIn 900ms ease-out both;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+    @keyframes fadeIn{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
+    h1{font-family:'Orbitron',sans-serif;font-size:2.9rem;margin-top:22px}
+    h1 span{color:var(--accent-2);text-shadow:0 0 14px rgba(0,212,255,0.12)}
+    .typed-text{color:var(--accent);font-weight:600;margin-top:10px}
+    #hero p{max-width:760px;margin:22px auto 32px;color:var(--muted);line-height:1.65}
+
+    .btn-primary{
+      display:inline-block;padding:12px 32px;border-radius:50px;background:transparent;border:2px solid;
+      border-image: linear-gradient(90deg,var(--accent),var(--accent-2)) 1;color:var(--accent-2);font-weight:600;text-decoration:none;
+      transition:all .25s;
+    }
+    .btn-primary:hover{transform:translateY(-4px);box-shadow:0 6px 30px rgba(124,58,237,0.08);background:linear-gradient(90deg, rgba(124,58,237,0.06), rgba(0,212,255,0.04))}
+
+    /* Skill chips */
+    .chips{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .chip{padding:10px 18px;border-radius:999px;background:transparent;border:1px solid rgba(124,58,237,0.16);font-size:.95rem;color:var(--muted)}
+    .chip:hover{background:linear-gradient(90deg, rgba(124,58,237,0.06), rgba(0,212,255,0.04));color:var(--text)}
+
+    /* Cards & grids */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;padding:26px;border:1px solid rgba(124,58,237,0.06);backdrop-filter: blur(6px);
+      transition:transform .38s, box-shadow .38s;
+      position:relative;overflow:hidden;
+    }
+    .card::before{
+      content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent, rgba(124,58,237,0.04), transparent);
+      transform: translateX(-110%);transition:transform .9s;
+    }
+    .card:hover::before{transform: translateX(110%)}
+    .card:hover{transform:translateY(-10px);box-shadow:0 18px 60px rgba(0,0,0,0.6)}
+    .card h3{color:var(--accent);margin-bottom:12px}
+    .card p, .card ul{color:var(--muted);line-height:1.7}
+    .card a{color:var(--accent-2);text-decoration:underline;display:inline-block;margin-top:10px}
+
+    /* Timeline */
+    .timeline{margin-left:18px;padding-left:18px;position:relative}
+    .timeline::before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:linear-gradient(180deg,var(--accent),var(--accent-2));border-radius:6px}
+    .t-item{margin-bottom:36px;position:relative;color:var(--muted)}
+    .t-item::before{content:"";position:absolute;left:-28px;top:6px;width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;align-items:start}
+    .contact-links a{
+      display:block;margin-bottom:14px;color:var(--text);text-decoration:none;font-size:1.02rem;transition:color .18s;
+    }
+    .contact-links a i{margin-right:10px;color:var(--accent-2)}
+    .contact-links a:hover{color:var(--accent-2)}
+    form#contactForm{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));padding:22px;border-radius:14px;border:1px solid rgba(124,58,237,0.05)}
+    #contact input,#contact textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);margin-bottom:12px;resize:none}
+    #contact button{padding:12px 20px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#05010a;font-weight:700;cursor:pointer;width:100%}
+    #contact button:hover{transform:translateY(-3px)}
+
+    footer{padding:22px 6%;text-align:center;border-top:1px solid rgba(255,255,255,0.03);color:#9aa6b2;background:transparent}
+
+    /* Small screens */
+    @media(max-width:800px){
+      header{padding:0 4%}
+      section{padding:110px 4% 60px}
+      h1{font-size:2rem}
+      .hero-img{width:165px;height:165px}
+    }
+
+    /* Typing effect (glow border) for big name in intro (keeps Priyanshi typing vibe) */
+    .typing-name{
+      display:inline-block;
+      font-family:'Orbitron',sans-serif;
+      color:var(--accent-2);
+      border-right:3px solid var(--accent-2);
+      white-space:nowrap;overflow:hidden;width:0;text-align:center;
+      animation: typingName 2.6s steps(18,end) forwards, blink .7s infinite;
+      font-size:1.6rem;margin-top:6px;
+      text-shadow:0 0 10px rgba(0,212,255,0.12);
+    }
+    @keyframes typingName{from{width:0} to{width:22ch}}
+    @keyframes blink{50%{border-color:transparent}}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header data-aos="fade-down">
+    <div class="logo">Ayushi Jain.</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a href="piyush_prajapat.pdf" download>Resume</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <!-- Use assets/ayushi.png or replace with your image path -->
+    <img src="assets/profil.png" alt="Ayushi Jain" class="hero-img animate__animated animate__fadeIn">
+    <h1 class="animate__animated animate__fadeInUp">Hi, I'm <span>Ayushi Jain</span></h1>
+
+    <!-- typing-name included for initial name vibe; typed.js below handles roles -->
+    <div class="typing-wrapper">
+      <div class="typing-name">AYUSHI JAIN</div>
+    </div>
+
+    <h2 class="typed-text animate__animated animate__fadeInUp"></h2>
+
+    <p class="animate__animated animate__fadeInUp">
+      Flutter Developer & Full-Stack enthusiast — building polished mobile apps and elegant web dashboards. 4+ years experience working on consumer apps, e-commerce integrations and analytics dashboards.
+    </p>
+
+    <a href="#contact" class="btn-primary animate__animated animate__fadeInUp">Hire Me</a>
+  </section>
+
+  <!-- About -->
+  <section id="about" data-aos="fade-up">
+    <h2 class="title">About Me</h2>
+    <div class="about-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:center">
+      <img src="assets/profil.png" alt="Ayushi Jain" style="width:100%;border-radius:14px;border:4px solid rgba(124,58,237,0.08);object-fit:cover" data-aos="zoom-in">
+      <div data-aos="fade-left" style="color:var(--muted)">
+        <p>Hello — I'm Ayushi Jain, a Flutter developer based in Jaipur. I build performant mobile apps and responsive web interfaces using Flutter, Firebase and Node.js. I enjoy turning product ideas into delightful user experiences, from pixel-perfect UI to backend integrations.</p>
+        <p style="margin-top:12px">I take freelance projects and collaborations — if you've got an app idea or need help improving an existing product, let's connect.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" data-aos="fade-up">
+    <h2 class="title">Tech Stack & Skills</h2>
+    <div class="chips">
+      <span class="chip">Flutter</span>
+      <span class="chip">Dart</span>
+      <span class="chip">Firebase</span>
+      <span class="chip">Node.js</span>
+      <span class="chip">MongoDB</span>
+      <span class="chip">REST APIs</span>
+      <span class="chip">Power BI</span>
+      <span class="chip">Appium / Selenium (QA)</span>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" data-aos="fade-up">
+    <h2 class="title">Selected Projects</h2>
+    <div class="projects-grid grid">
+      <div class="card" data-aos="zoom-in"><h3>Rukmani Sales</h3><p>Snacks, sweets & drinks e-commerce app with Razorpay + WhatsApp API integration.</p></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="120"><h3>Posh Rides</h3><p>Cab booking mobile app with real-time features and map integration.</p><a href="https://play.google.com/store/apps/details?id=com.app.poshrides" target="_blank">Play Store</a></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="240"><h3>Shush</h3><p>Private & secure chat application built for privacy-first messaging.</p><a href="https://play.google.com/store/apps/details?id=com.shushapp.shush" target="_blank">Play Store</a></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="360"><h3>Direise</h3><p>Professional networking and jobs app — user-facing product with social features.</p><a href="https://play.google.com/store/apps/details?id=com.dirise.dirisee" target="_blank">Play Store</a></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="480"><h3>Direise Seller</h3><p>Business account platform for Direise sellers and merchants.</p><a href="https://play.google.com/store/apps/details?id=com.diriseseller.diriseseller" target="_blank">Play Store</a></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="600"><h3>My Global</h3><p>Online community & marketplace app with multi-user features.</p><a href="https://play.google.com/store/apps/details?id=com.myglobal" target="_blank">Play Store</a></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="720"><h3>Resvago</h3><p>Hotel booking and trip planning web app.</p><a href="https://resvago.com/" target="_blank">Visit Website</a></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="840"><h3>Key Vision PRO</h3><p>Security & surveillance mobile management application.</p><a href="https://play.google.com/store/apps/details?id=com.keyvision.KeyVisionPROMobile" target="_blank">Play Store</a></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="960"><h3>Smilezy</h3><p>Healthcare consultation & pharmacy delivery app (mobile).</p><a href="https://play.google.com/store/apps/details?id=com.smileszy.smileszy" target="_blank">Play Store</a></div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" data-aos="fade-up">
+    <h2 class="title">Experience</h2>
+    <div class="timeline">
+      <div class="t-item" data-aos="fade-right">
+        <h4>Senior Flutter Developer | India Deals</h4>
+        <p>2023 – Present — Building scalable mobile & web apps serving large user bases; working on real-time features and app optimization.</p>
+      </div>
+      <div class="t-item" data-aos="fade-left">
+        <h4>Freelance Full-Stack Developer</h4>
+        <p>2020 – Present — Delivered numerous client projects from concept to deployment; focus on Flutter, Firebase, and Node.js backends.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" data-aos="fade-up">
+    <h2 class="title">Let's Work Together</h2>
+    <div class="contact-grid">
+      <div class="contact-links">
+        <a href="mailto:13prajapatipiyush15@gmail.com?subject=Hello%20Ayushi"><i class="fa-solid fa-envelope"></i> 📧 13prajapatipiyush15@gmail.com</a>
+        <a href="tel:+919549348495"><i class="fa-solid fa-phone"></i> 📞 +91 95493 48495</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Old%20Delhi%20Road,%20Shahpura,%20Jaipur%20302021" target="_blank"><i class="fa-solid fa-location-dot"></i> 📍 Shahpura, Jaipur</a>
+        <a href="https://github.com/PIYUSHPRAJAPATI2715" target="_blank"><i class="fa-brands fa-github"></i> 🐙 GitHub</a>
+        <a href="https://www.linkedin.com/in/piyush-prajapati-78356a262/" target="_blank"><i class="fa-brands fa-linkedin"></i> 🔗 LinkedIn</a>
+        <a href="https://www.instagram.com/piyushprajapati_1527" target="_blank"><i class="fa-brands fa-instagram"></i> 📸 Instagram</a>
+      </div>
+
+      <!-- Contact Form (opens WhatsApp with message like the Piyush version) -->
+      <form id="contactForm" aria-label="Contact Ayushi">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="msg" rows="5" placeholder="Message" required></textarea>
+        <button type="submit">Send Message via WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Ayushi Jain. All rights reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <script>
+    // AOS init
+    AOS.init({ once:true, duration:900 });
+
+    // Typed roles
+    new Typed('.typed-text',{
+      strings:['Flutter Developer','Full-Stack Developer','QA & Automation Enthusiast','Mobile Apps Specialist'],
+      typeSpeed:60,backSpeed:30,backDelay:2000,loop:true
+    });
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // WhatsApp contact form behavior
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = encodeURIComponent(this.name.value.trim());
+      const email = encodeURIComponent(this.email.value.trim());
+      const message = encodeURIComponent(this.msg.value.trim());
+      const phone = '919549348495'; // Piyush number used from resume data
+      const url = `https://wa.me/${phone}?text=` +
+                  `Hello%20Ayushi%2C%0A` +
+                  `Name%3A%20${name}%0A` +
+                  `Email%3A%20${email}%0A` +
+                  `Message%3A%20${message}`;
+      window.open(url, '_blank');
+      this.reset();
+    });
+
+    // small friendly accessibility tweak: make typing-name animation finish earlier for mobile
+    (function adjustTyping(){
+      const t = document.querySelector('.typing-name');
+      if(!t) return;
+      if(window.innerWidth < 700){
+        t.style.fontSize = '1.15rem';
+      }
+    })();
+  </script>
+</body>
+</html>
